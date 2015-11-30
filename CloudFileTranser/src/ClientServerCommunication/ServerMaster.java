@@ -1,3 +1,4 @@
+package ClientServerCommunication;
 import java.io.*;
 import java.net.*;
 
@@ -11,7 +12,7 @@ public class ServerMaster {
 
         try {
             serverSock = new ServerSocket(5555);
-            System.out.println("Server has been started...!!!");
+            System.out.println("Waiting for Client Connection . . .");
         } catch (Exception e) {
             System.err.println("Port is in use already!!");
             System.exit(1);
@@ -20,9 +21,9 @@ public class ServerMaster {
         while (true) {
             try {
                 clientSock = serverSock.accept();
-                System.out.println("Conection Accepted : " + clientSock);
+                System.out.println("Conection Accepted from the socket : " + clientSock);
 
-                Thread t = new Thread(new ClientConnection(clientSock));
+                Thread t = new Thread(new Server(clientSock));
 
                 t.start();
 
