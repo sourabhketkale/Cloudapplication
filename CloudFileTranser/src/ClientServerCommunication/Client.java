@@ -59,6 +59,7 @@ public class Client  {
                     os.println("upload");
                     Client client= new Client();
                     os.println(client.filepathgetter());
+                    System.out.println(client.filepathgetter());
                     sendFile(client.filepathgetter());
                     break;
                 case "download":

@@ -18,6 +18,7 @@ import com.cloudapplication.gui.*;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
 import javax.swing.JList;
@@ -100,11 +101,19 @@ public class Applicationmainpage {
 	public void fillflielistcombo(String collectionName){
 		
 		
-		ConnectionClass class1= new ConnectionClass();
-		DB db= class1.connection("CloudApplication");
+		ConnectionClass connectionClass= new ConnectionClass();
+		DB db= connectionClass.connection("CloudApplication");
 		DBCollection coll= db.getCollection(collectionName);
-		DBObject flielistquery = BasicDBObjectBuilder.start().add("_id", new Cloudfile().getFilename()).get();
+		/*DBCursor dbCursor= */
+		BasicDBObjectBuilder dbObjectBuilder = new BasicDBObjectBuilder();
+		/*dbObjectBuilder.
+		Set<String> collections = coll.get
 		
+		while(){
+			
+			
+		}
+		*/
 		
 		
 		
