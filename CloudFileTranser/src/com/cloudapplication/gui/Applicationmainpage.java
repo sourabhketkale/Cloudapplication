@@ -1,5 +1,7 @@
 package com.cloudapplication.gui;
 import connectionMongoDB.ConnectionClass;
+import ClientServerCommunication.*;
+
 import com.cloudapplication.pojo.*;
 
 import java.awt.EventQueue;
@@ -69,7 +71,7 @@ public class Applicationmainpage {
 		JButton UploadButton_1 = new JButton("Upload");
 		
 		UploadButton_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		UploadButton_1.setBounds(44, 179, 137, 58);
+		UploadButton_1.setBounds(44, 157, 137, 58);
 		getFrmCloudApplication().getContentPane().add(UploadButton_1);
 		
 		
@@ -81,10 +83,25 @@ public class Applicationmainpage {
 		progressBar.setBounds(55, 335, 613, 22);
 		getFrmCloudApplication().getContentPane().add(progressBar);
 		
+		/*
+		 * Added the exit button functionality
+		 * */
+		JButton btnExit = new JButton("Exit");
+		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event1) {
+				
+				System.exit(0);									
+			}
+		});
+		btnExit.setBounds(44, 249, 137, 58);
+		frmCloudApplication.getContentPane().add(btnExit);
+		
 		UploadButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 
-				filechooser.fileselecthandler();
+				String fileName = filechooser.fileselecthandler();
+				new Client().sendFile(fileName);
 			}
 		});
 	
@@ -104,16 +121,9 @@ public class Applicationmainpage {
 		ConnectionClass connectionClass= new ConnectionClass();
 		DB db= connectionClass.connection("CloudApplication");
 		DBCollection coll= db.getCollection(collectionName);
-		/*DBCursor dbCursor= */
-		BasicDBObjectBuilder dbObjectBuilder = new BasicDBObjectBuilder();
-		/*dbObjectBuilder.
-		Set<String> collections = coll.get
 		
-		while(){
-			
-			
-		}
-		*/
+		BasicDBObjectBuilder dbObjectBuilder = new BasicDBObjectBuilder();
+		
 		
 		
 		
